@@ -148,16 +148,6 @@ class ScrollableTabView extends Component {
       callback: this._onChangeTab.bind(this, currentPage, pageNumber),
     });
   }
-  _onScrollViewReady() {
-    if (this.cachedPage !== null) {
-      if (this.props.scrollWithoutAnimation) {
-        this.scrollView.getNode().setPageWithoutAnimation(pageNumber);
-      } else {
-        this.scrollView.getNode().setPage(pageNumber);
-      }
-      this.cachedPage = null;
-    }
-  }
 
   renderTabBar(props) {
     if (this.props.renderTabBar === false) {
@@ -233,7 +223,6 @@ class ScrollableTabView extends Component {
         contentOffset={{ x: this.props.initialPage * this.state.containerWidth, }}
         ref={(scrollView) => {
           this.scrollView = scrollView;
-          this._onScrollViewReady();
         }}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { x: this.state.scrollXIOS, }, }, }, ],
@@ -275,7 +264,6 @@ class ScrollableTabView extends Component {
         )}
         ref={(scrollView) => {
           this.scrollView = scrollView;
-          this._onScrollViewReady();
         }}
         {...this.props.contentProps}
       >
@@ -371,6 +359,7 @@ class ScrollableTabView extends Component {
       activeTab: this.state.currentPage,
       scrollValue: this.state.scrollValue,
       containerWidth: this.state.containerWidth,
+      tabBarStyle: this.props.tabBarStyle,
     };
 
     if (this.props.tabBarBackgroundColor) {
