@@ -341,9 +341,13 @@ class ScrollableTabView extends Component {
       } else {
         this.setState({ containerWidth: width, });
       }
-      this.requestAnimationFrame(() => {
+      if (this.requestAnimationFrame) {
+        this.requestAnimationFrame(() => {
+          this.goToPage(this.state.currentPage);
+        });
+      } else {
         this.goToPage(this.state.currentPage);
-      });
+      }
     }
   }
 
