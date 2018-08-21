@@ -28,7 +28,7 @@ class ScrollableTabView extends Component {
 
   scrollOnMountCalled =  false
 
-  propTypes = {
+  static propTypes = {
     tabBarPosition: PropTypes.oneOf(['top', 'bottom', 'overlayTop', 'overlayBottom', ]),
     initialPage: PropTypes.number,
     page: PropTypes.number,
