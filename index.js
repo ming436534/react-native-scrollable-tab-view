@@ -56,6 +56,13 @@ class ScrollableTabView extends Component {
   constructor(props) {
     super(props);
     this.state = this.getInitialState();
+    Dimensions.addEventListener('change', this.onDimensionChange);
+  }
+
+  onDimensionChange = () => {
+    setTimeout(() => {
+      this.goToPage(this.state.currentPage);
+    }, 500);
   }
 
   getInitialState() {
@@ -116,6 +123,7 @@ class ScrollableTabView extends Component {
     }
   }
   componentWillUnmount() {
+    Dimensions.removeListener('change', onDimensionChange);
     if (Platform.OS === 'ios') {
       this.state.scrollXIOS.removeAllListeners();
     } else {
