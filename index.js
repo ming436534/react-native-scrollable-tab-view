@@ -123,7 +123,7 @@ class ScrollableTabView extends Component {
     }
   }
   componentWillUnmount() {
-    Dimensions.removeListener('change', onDimensionChange);
+    Dimensions.removeListener('change', this.onDimensionChange);
     if (Platform.OS === 'ios') {
       this.state.scrollXIOS.removeAllListeners();
     } else {
