@@ -347,7 +347,7 @@ class ScrollableTabView extends Component {
         // Need to call __makeNative manually to avoid a native animated bug. See
         // https://github.com/facebook/react-native/pull/14435
         containerWidthAnimatedValue.__makeNative();
-        scrollValue = Animated.divide(this.state.scrollXIOS, containerWidthAnimatedValue);
+        const scrollValue = Animated.divide(this.state.scrollXIOS, containerWidthAnimatedValue);
         this.setState({ containerWidth: width, scrollValue, });
       } else {
         this.setState({ containerWidth: width, });
